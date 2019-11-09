@@ -1,32 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style lang="sass">
+@import "./assets/css/_general"
 
-#nav {
-  padding: 30px;
+@font-face
+  src: url("./assets/fonts/Bahnschrift/BAHNSCHRIFT.TTF")
+  font-family: "Bahnschrift"
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+#app
+  background-image: url("./assets/identfamilia.png")
+  // background-color: green
+  // background-position: top bottom
+  background-size: cover
+  // box-sizing: content-box
+  height: 100vh
+  // overflow-x: hidden
+  font-family: "Bahnschrift", sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscal
 </style>
