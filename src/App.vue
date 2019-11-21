@@ -12,7 +12,7 @@
   font-family: "Bahnschrift"
 
 #app
-  background-image: url("./assets/identfamilia.png")
+  // background-image: url("./assets/identfamilia.png")
   // background-color: green
   // background-position: top bottom
   background-size: cover

@@ -29,32 +29,43 @@ export default {
       navs: [
         {
           name: "Identificação Familiar",
-          path: "/"
+          path: "/familiar"
         },
         {
           name: "Identificação Municipal",
-          path: "/a"
+          path: "/municipal"
         },
         {
           name: "Planilhas",
-          path: "/b"
+          path: "/planilhas"
         },
         {
           name: "Ajuda",
-          path: "/c"
+          path: "/ajuda"
         }
       ]
     };
   },
 
   methods: {
-    pushRoute(route) {
-      this.$router.push(route);
+    pushRoute(path) {
+      console.log(path)
+      if (path !== this.currentPath) this.$router.push(path);
+    },
+
+    setCurrentPath(path) {
+      this.currentPath = `/${path}`;
+    }
+  },
+
+  watch: {
+    $route() {
+      this.setCurrentPath(this.$route.path.split("/")[1]);
     }
   },
 
   mounted() {
-    this.currentPath = this.$route.path;
+    this.setCurrentPath(this.$route.path.split("/")[1]);
   }
 };
 </script>

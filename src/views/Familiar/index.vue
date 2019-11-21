@@ -33,10 +33,9 @@
   </div>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .home
-  margin: 10px
-  height: calc( 100% - 20px )
+  height: 100%
   display: flex
   flex-direction: column
   justify-content: center
@@ -46,7 +45,6 @@
     display: flex
     flex-direction: column
     justify-content: center
-    // background-color: green
 
   &__image
     width: 330px

@@ -11,8 +11,7 @@
         </div>
 
         <div class="tile is-child admin-layout__content">
-          <!-- <router-view /> -->
-          <Home />
+          <router-view />
         </div>
       </div>
     </div>
@@ -23,13 +22,10 @@
 import SideNavBar from "./SideNavBar";
 import TopBar from "./TopBar";
 
-import Home from "../views/Home/Home"; // remover isso -----------
-
 export default {
   components: {
     SideNavBar,
-    TopBar,
-    Home
+    TopBar
   }
 };
 </script>
@@ -37,7 +33,7 @@ export default {
 <style lang="sass">
 .admin-layout
   height: 100%
-  min-height: 600px
+
   background-color: white
   .tile.is-ancestor
     margin: 0
@@ -48,8 +44,12 @@ export default {
   &__left-side
     min-width: 280px
     max-width: 280px
+  &__side-bar
+    // min-height: 600px
+    overflow-y: scroll
   &__top-bar
     padding: 40px 20px 0 20px
     max-height: 80px
   &__content
+    padding: 10px
 </style>
