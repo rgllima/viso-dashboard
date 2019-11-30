@@ -57,7 +57,7 @@ export default {
     // Make chart not full circle
     chart.startAngle = -90;
     chart.endAngle = 180;
-    chart.innerRadius = am4core.percent(20);
+    chart.innerRadius = am4core.percent(10);
 
     // Set number format
     chart.numberFormatter.numberFormat = "#.#'%'";
@@ -94,9 +94,9 @@ export default {
       "alternativeBackground"
     );
     series1.columns.template.fillOpacity = 0.08;
-    series1.columns.template.cornerRadiusTopLeft = 20;
+    series1.columns.template.cornerRadiusTopLeft = 5;
     series1.columns.template.strokeWidth = 0;
-    series1.columns.template.radarColumn.cornerRadius = 20;
+    series1.columns.template.radarColumn.cornerRadius = 5;
 
     var series2 = chart.series.push(new am4charts.RadarColumnSeries());
     series2.dataFields.valueX = "value";
@@ -104,7 +104,7 @@ export default {
     series2.clustered = false;
     series2.columns.template.strokeWidth = 0;
     series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
-    series2.columns.template.radarColumn.cornerRadius = 20;
+    series2.columns.template.radarColumn.cornerRadius = 5;
 
     series2.columns.template.adapter.add("fill", function(fill, target) {
       return chart.colors.getIndex(target.dataItem.index);

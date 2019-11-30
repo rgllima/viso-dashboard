@@ -33,6 +33,20 @@
   </div>
 </template>
 
+<script>
+
+
+export default {
+  // components: {
+  //   Modal
+  // },
+
+  data() {
+    return {};
+  }
+};
+</script>
+
 <style lang="sass" scoped>
 .home
   height: 100%

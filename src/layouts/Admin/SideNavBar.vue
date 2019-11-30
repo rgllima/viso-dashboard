@@ -1,7 +1,7 @@
 <template>
   <div class="side-nav-bar">
     <div class="tile is-child side-nav-bar__figure">
-      <img class="side-nav-bar__logo" src="../assets/Logo.png" alt="Viso Logo" />
+      <img class="side-nav-bar__logo" src="../../assets/logo.png" alt="Viso Logo" />
     </div>
 
     <div class="tile is-child side-nav-bar__navigation">
@@ -12,11 +12,6 @@
         :key="i"
         @click="pushRoute(nav.path)"
       >{{nav.name}}</button>
-    </div>
-
-    <div class="tile is-child side-nav-bar__banner">
-      <p>Total de pessoas cadastradas no Programa Bolsa Familia</p>
-      <p class="subtitle">61.180</p>
     </div>
   </div>
 </template>
@@ -71,7 +66,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import "../assets/css/_variables"
+@import "../../assets/css/variables"
 
 .side-nav-bar
   padding-top: 20px
@@ -80,19 +75,23 @@ export default {
   display: flex
   flex-direction: column
   justify-content: space-between
+
   &__figure
     max-height: 120px
+
   &__logo
     width: 70%
     min-width: 100px
     max-height: auto
     margin: 0 auto
     display: block
+
   &__navigation
     max-height: 100%
     display: flex
     flex-direction: column
     justify-content: center
+
     button
       background-color: transparent
       color: $secondary
@@ -101,13 +100,4 @@ export default {
       width: 200px
       margin: 5px auto
       border: none
-  &__banner
-    max-height: 100px
-    text-align: center
-    display: flex
-    flex-direction: column
-    justify-content: center
-    background-color: $secondary
-    p
-      color: $primary
 </style>

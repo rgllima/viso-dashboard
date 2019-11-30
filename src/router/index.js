@@ -1,7 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 
-import AdminLayout from "@/layouts/AdminLayout"
+import Authentication from "../layouts/Authentication/Authentication"
+import Admin from "../layouts/Admin/"
 
 Vue.use(VueRouter)
 
@@ -12,10 +13,33 @@ const routes = [
     name: "redirect"
   },
   {
+    path: "/auth",
+    redirect: "/login",
+    name: "authentication",
+    component: Authentication,
+    children: [
+      {
+        path: "/login",
+        name: "login",
+        component: () => import("../views/Login/Login.vue")
+      },
+      {
+        path: "/signup",
+        name: "signup",
+        component: () => import("../views/SignUp/SignUp.vue")
+      },
+      {
+        path: "/recovery",
+        name: "pass-recovery",
+        component: () => import("../views/PasswordRecovery/PasswordRecovery.vue")
+      }
+    ]
+  },
+  {
     path: "/",
     redirect: "/familiar",
     name: "admin-layout",
-    component: AdminLayout,
+    component: Admin,
     children: [
       {
         path: "/familiar",

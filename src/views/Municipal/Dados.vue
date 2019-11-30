@@ -7,9 +7,6 @@
           <DonutChart />
         </div>
         <div class="tile is-child">
-          <SemiPieChart />
-        </div>
-        <div class="tile is-child">
           <GaugeChart />
         </div>
       </div>
@@ -53,7 +50,6 @@
 <script>
 import CustomTitle from "@/components/CustomTitle";
 import DonutChart from "@/components/DonutChart";
-import SemiPieChart from "@/components/SemiPieChart";
 import GaugeChart from "@/components/GaugeChart";
 import FilterForm from "./components/FilterForm";
 import DataCard from "./components/DataCard";
@@ -62,7 +58,6 @@ export default {
   components: {
     CustomTitle,
     DonutChart,
-    SemiPieChart,
     GaugeChart,
     FilterForm,
     DataCard
