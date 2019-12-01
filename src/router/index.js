@@ -8,6 +8,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: "/test",
+    name: "test",
+    component: () => import("../components/Reports/BuildReport")
+  },
+  {
     path: "*",
     redirect: "/not-found",
     name: "redirect"
@@ -31,7 +36,8 @@ const routes = [
       {
         path: "/recovery",
         name: "pass-recovery",
-        component: () => import("../views/PasswordRecovery/PasswordRecovery.vue")
+        component: () =>
+          import("../views/PasswordRecovery/PasswordRecovery.vue")
       }
     ]
   },
@@ -44,7 +50,20 @@ const routes = [
       {
         path: "/familiar",
         name: "familiar",
-        component: () => import("../views/Familiar")
+        redirect: "/familiar/identification",
+        component: () => import("../views/Familiar"),
+        children: [
+          {
+            path: "/familiar/identification",
+            name: "familiar-identification",
+            component: () => import("../views/Familiar/Identification")
+          },
+          {
+            path: "/familiar/individual",
+            name: "familiar-individual",
+            component: () => import("../views/Familiar/Individual")
+          }
+        ]
       },
       {
         path: "/municipal",

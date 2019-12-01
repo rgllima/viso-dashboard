@@ -4,12 +4,12 @@
 
     <div class="admin-layout__wrap tile is-ancestor">
       <div class="admin-layout__left-side tile is-parent is-vertical">
-        <SideNavBar />
+        <SideNavBar :currentPath="currentPath" />
       </div>
 
       <div class="tile is-parent is-vertical admin-layout__side-bar">
         <div class="tile is-child admin-layout__top-bar">
-          <TopBar @confirmLogout="confirmLogout" />
+          <TopBar :currentPath="currentPath" :query="routeQuery" @confirmLogout="confirmLogout" />
         </div>
 
         <div class="tile is-child admin-layout__content">
@@ -34,8 +34,18 @@ export default {
 
   data() {
     return {
+      currentPath: "",
+      routeQuery: {},
       activeLogoutModal: false
     };
+  },
+
+  watch: {
+    $route() {
+      console.log(this.$route);
+      this.setCurrentPath(this.$route.path);
+      this.setRouteQuery(this.$route.query);
+    }
   },
 
   methods: {
@@ -50,7 +60,21 @@ export default {
     doLogout() {
       this.closeLogoutModal();
       this.$router.push("/login");
+    },
+
+    setCurrentPath(path) {
+      this.currentPath = path;
+    },
+
+    setRouteQuery(query) {
+      if (query) this.routeQuery = query;
+      else this.routeQuery = {};
     }
+  },
+
+  mounted() {
+    this.setCurrentPath(this.$route.path);
+    this.setRouteQuery(this.$route.query);
   }
 };
 </script>

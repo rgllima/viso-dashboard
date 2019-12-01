@@ -7,7 +7,7 @@
     <div class="tile is-child side-nav-bar__navigation">
       <button
         class="button"
-        :class="{'is-primary' : currentPath === nav.path }"
+        :class="{'is-primary' : `/${currentPath.split('/')[1]}` === nav.path }"
         v-for="(nav, i) in navs"
         :key="i"
         @click="pushRoute(nav.path)"
@@ -18,9 +18,15 @@
 
 <script>
 export default {
+  props: {
+    currentPath: {
+      type: String,
+      required: true
+    }
+  },
+
   data() {
     return {
-      currentPath: "",
       navs: [
         {
           name: "Identificação Familiar",
@@ -44,23 +50,10 @@ export default {
 
   methods: {
     pushRoute(path) {
-      console.log(path)
-      if (path !== this.currentPath) this.$router.push(path);
-    },
-
-    setCurrentPath(path) {
-      this.currentPath = `/${path}`;
+      console.log(path, this.currentPath);
+      if (path !== `/${this.currentPath.split("/")[1]}`)
+        this.$router.push(path);
     }
-  },
-
-  watch: {
-    $route() {
-      this.setCurrentPath(this.$route.path.split("/")[1]);
-    }
-  },
-
-  mounted() {
-    this.setCurrentPath(this.$route.path.split("/")[1]);
   }
 };
 </script>

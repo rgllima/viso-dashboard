@@ -6,10 +6,21 @@
           <div class="control has-icons-right">
             <input class="input" type="text" placeholder="Pesquisar" value />
             <span class="icon is-small is-right">
-              <i class="fas fa-search"></i>
+              <i class="icon--grey-light fas fa-search"></i>
             </span>
           </div>
         </div>
+
+        <button
+          v-if="showButton"
+          class="top-bar__generate-report button is-info"
+          @click="downloadReport"
+        >
+          <span class="icon">
+            <i class="fas fa-download"></i>
+          </span>
+          <span>Download do Relatório</span>
+        </button>
       </div>
       <div class="level-right top-bar__profile">
         <div class="top-bar__info level-item">
@@ -21,7 +32,10 @@
         </div>
         <div class="top-bar__avatar level-item">
           <figure class="image is-64x64">
-            <img class="is-rounded top-bar__avatar__img" src="https://thispersondoesnotexist.com/image" />
+            <img
+              class="is-rounded top-bar__avatar__img"
+              src="https://thispersondoesnotexist.com/image"
+            />
           </figure>
         </div>
       </div>
@@ -29,7 +43,42 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    currentPath: {
+      type: String,
+      required: true
+    },
+    query: {
+      type: Object
+    }
+  },
+
+  methods: {
+    downloadReport() {
+      let routeData = this.$router.resolve({
+        name: "test",
+        query: { type: this.query.type }
+      });
+      window.open(routeData.href, "_blank");
+    }
+  },
+
+  computed: {
+    showButton() {
+      console.log("Opa", this.query);
+      if (this.query && this.query.page && this.query.page === "preview-report")
+        return true;
+      return false;
+    }
+  }
+};
+</script>
+
 <style lang="sass" scoped>
+@import "../../assets/css/variables"
+
 .top-bar
   padding-right: 50px
 
@@ -39,9 +88,18 @@
       background-color: #d7d7d7
       border: solid 1px #bdbdbd
 
-    i
+    .icon--grey-light
       color: #bdbdbd
       font-size: 1.5rem
+
+  &__generate-report
+    margin-bottom: 10px
+    margin-left: 25px
+    font-size: .8rem
+    height: 40px
+    background-color: $secondary
+    // width: 120px
+
 
   &__profile
     width: 220px

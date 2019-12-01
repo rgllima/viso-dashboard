@@ -1,6 +1,6 @@
 <template>
   <div class="custom-title">
-    <label class="subtitle has-color-secondary">{{title}}</label>
+    <label class="subtitle has-color-secondary" :class="titleSize">{{title}}</label>
     <div class="custom-title__bar"></div>
   </div>
 </template>
@@ -11,6 +11,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    titleSize: {
+      type: String,
+      default: ""
     }
   }
 };
@@ -25,7 +29,7 @@ export default {
 
   &__bar
     width: 100px
-    height: 5px
+    height: 3px
     margin-bottom: 25px
     background-color: #ffcc00
 </style>
