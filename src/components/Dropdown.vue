@@ -2,9 +2,9 @@
   <div class="field">
     <div class="control">
       <div class="select">
-        <select class="dropdown">
-          <option>{{title}}</option>
-          <option v-for="(option, index) in options" :key="index">{{option}}</option>
+        <select class="dropdown" :value="value" @input="$emit('input', $event.target.value)">
+          <option :value="null">{{title}}</option>
+          <option v-for="(option, index) in options" :key="index" :value="option">{{option}}</option>
         </select>
       </div>
     </div>
@@ -21,6 +21,9 @@ export default {
     options: {
       type: Array,
       required: true
+    },
+    value: {
+      type: String
     }
   },
   data() {

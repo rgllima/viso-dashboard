@@ -1,16 +1,16 @@
 <template>
   <div class="filter-form">
     <div class="filter-form__card">
-      <Dropdown title="Área de Atendimento" :options="[]" />
+      <Dropdown v-model="area_atendimento" title="Área de Atendimento" :options="customCras" />
 
-      <Dropdown title="Situação Cadastral" :options="[]" />
-
-      <Dropdown title="Benefícios" :options="[]" />
-
-      <Dropdown title="Renda" :options="[]" />
+      <Dropdown
+        v-model="filter"
+        title="Identificação"
+        :options="['Situação Cadastral', 'Tempo de Cadastro', 'Média de Membros', 'Benefícios', 'Renda']"
+      />
 
       <div class="filter-form__button">
-        <Button title="Identificar" :onClick="submit" />
+        <Button :class="{'is-loading': loading}" title="Identificar" :onClick="submit" />
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@
 <script>
 import Dropdown from "@/components/Dropdown";
 import Button from "@/components/Button";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -26,9 +27,35 @@ export default {
     Button
   },
 
+  data() {
+    return {
+      area_atendimento: "",
+      filter: "",
+      loading: false
+    };
+  },
+
+  computed: {
+    customCras() {
+      return this.cras.map(a => a.name);
+    },
+
+    ...mapGetters({
+      cras: "getCras"
+    })
+  },
+
   methods: {
     submit() {
-      this.$router.push("/municipal/dados")
+      this.loading = true;
+      this.$store.dispatch("doMunicipalIdentification", {
+        filter: this.filter,
+        area_atendimento: this.area_atendimento
+      });
+      this.loading = false;
+      this.$router.push("/municipal");
+      this.$router.push("/municipal/dados");
+      this.$emit("close");
     }
   }
 };

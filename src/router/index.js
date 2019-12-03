@@ -84,6 +84,19 @@ const routes = [
         ]
       },
       {
+        path: "/sheets",
+        redirect: "/sheets/overview",
+        name: "sheets",
+        component: () => import("../views/Sheets"),
+        children: [
+          {
+            path: "/sheets/overview",
+            name: "sheets-overview",
+            component: () => import("../views/Sheets/Overview")
+          }
+        ]
+      },
+      {
         path: "/not-found",
         name: "not-found",
         component: () => import("../views/Error/NotFound")

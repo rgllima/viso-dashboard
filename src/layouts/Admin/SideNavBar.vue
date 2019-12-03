@@ -38,11 +38,11 @@ export default {
         },
         {
           name: "Planilhas",
-          path: "/planilhas"
+          path: "/sheets"
         },
         {
           name: "Ajuda",
-          path: "/ajuda"
+          path: "/help"
         }
       ]
     };
